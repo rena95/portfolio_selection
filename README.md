@@ -4,7 +4,7 @@ We say (or Markowitz said!) that a portfolio is efficient when it gives the "max
 
 Stock prices are downloaded from Yahoo FINANCE and are **monthly** aggregated,  thus returns are also computed on monthly frequency.
 
-The app provides return and risk (variance) of **1000** simulated portfolios (each with different weigths). 
+The app provides return and risk (variance) of **1000** simulated portfolios (each with different weights). 
 
 ![example.png](https://github.com/rena95/portfolio_selection/blob/main/example.png?raw=trues)
 
