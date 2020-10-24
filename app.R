@@ -20,30 +20,6 @@ n_sim <- 1000
 ###############UTILITIES####################
 
 
-upload_stock <- function(stock){
-  # NOTE:"app_string" and "value" must have the same order
-  app_string <-  c("AMAZON (AMZN)","BOEING (BA)","FACEBOOK (FB)","GOOGLE (GOOG)",
-                    "MICROSOFT (MSFT)","NRG ENERGY (NRG)","WALMART (WMT)","AXA SA (CS.PA)",
-                   "DALMIER AG (DAI.DE)","ENEL MI","ENI MI","FERRARI NV (RACE)",
-                   "NOKIA (NOK)","TOTAL (TOT)","VODAFONE PLC (VOD)","VOLKSWAGEN AG (WOW.DE)",
-                   "ISHARE GLOBAL CLEAN ENERGY ETF (ICLN)","ISHARE LARGE CAP ETF (FXI)","KRANESHARES CSI CHINA INTERNET ETF (KWEB)","VANGUARD ITC INDEX ETF (VGT)",
-                   "VANGUARD REAL ESTATE INDEX ETF (VNQ)", "VANGAURD S&P 500 ETF (VOO)","XTRACKERS HARVEST CSI 300 CHINA A ETF (ASHR)")
-  pos        <- which(stock==app_string)
-  value      <-    c("AMZN","BA","FB","GOOG",
-                     "MSFT","NRG","WMT","CS.PA",
-                     "DAI.DE","ENEL.MI","ENI.MI","RACE",
-                     "NOK","TOT","VOD","VOW.DE",
-                     "ICLN","FXI","KWEB","VGT",
-                     "VNQ","VOO","ASHR")[pos]
-
-  # Download price
-  getSymbols(value, src="yahoo")
-  dat <- as.data.frame(get(value))
-  dat <- cbind(row.names(dat),dat)
-  names(dat)[1] <- "Date"
-  dat <- from_day_to_month(dat) 
-  return(dat[,c(1,2)])
-}
 
 
 # Return the first day observation for each month
@@ -69,6 +45,32 @@ ui <- dashboardPage(
 percentage <- function(number){
   paste(round(100* number, 2), "%", sep="")
 } 
+
+
+upload_stock <- function(stock){
+  # NOTE:"app_string" and "value" must have the same order
+  app_string <-  c("AMAZON (AMZN)","BOEING (BA)","FACEBOOK (FB)","GOOGLE (GOOG)",
+                    "MICROSOFT (MSFT)","NRG ENERGY (NRG)","WALMART (WMT)","AXA SA (CS.PA)",
+                   "DALMIER AG (DAI.DE)","ENEL MI","ENI MI","FERRARI NV (RACE)",
+                   "NOKIA (NOK)","TOTAL (TOT)","VODAFONE PLC (VOD)","VOLKSWAGEN AG (WOW.DE)",
+                   "ISHARE GLOBAL CLEAN ENERGY ETF (ICLN)","ISHARE LARGE CAP ETF (FXI)","KRANESHARES CSI CHINA INTERNET ETF (KWEB)","VANGUARD ITC INDEX ETF (VGT)",
+                   "VANGUARD REAL ESTATE INDEX ETF (VNQ)", "VANGAURD S&P 500 ETF (VOO)","XTRACKERS HARVEST CSI 300 CHINA A ETF (ASHR)")
+  pos        <- which(stock==app_string)
+  value      <-    c("AMZN","BA","FB","GOOG",
+                     "MSFT","NRG","WMT","CS.PA",
+                     "DAI.DE","ENEL.MI","ENI.MI","RACE",
+                     "NOK","TOT","VOD","VOW.DE",
+                     "ICLN","FXI","KWEB","VGT",
+                     "VNQ","VOO","ASHR")[pos]
+
+  # Download price
+  getSymbols(value, src="yahoo")
+  dat <- as.data.frame(get(value))
+  dat <- cbind(row.names(dat),dat)
+  names(dat)[1] <- "Date"
+  dat <- from_day_to_month(dat) 
+  return(dat[,c(1,2)])
+}
 
 server <- function(input, output){
   
