@@ -35,13 +35,6 @@ from_day_to_month <- function(df){
 }
 
 
-
-ui <- dashboardPage(
-  dashboardHeader(title="Portfolio selection"),
-  sidebar = call_sidebar,
-  body    = call_body
-)
-
 percentage <- function(number){
   paste(round(100* number, 2), "%", sep="")
 } 
@@ -71,6 +64,18 @@ upload_stock <- function(stock){
   dat <- from_day_to_month(dat) 
   return(dat[,c(1,2)])
 }
+
+
+
+
+ui <- dashboardPage(
+  dashboardHeader(title="Portfolio selection"),
+  sidebar = call_sidebar,
+  body    = call_body
+)
+
+
+
 
 server <- function(input, output){
   
