@@ -9,4 +9,4 @@ The app provides return and risk (variance) of **1000** simulated portfolios (ea
 ![example.png](https://github.com/rena95/portfolio_selection/blob/main/example.png?raw=trues)
 
 The user can choose among a set of possible securities so as to build its best portfolio.
-I try
+
