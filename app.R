@@ -17,7 +17,7 @@ library(stringr)
 source("call_sidebar.R")
 source("call_body.R")
 
-n_sim <- 1000
+n_sim <- 2000
 ###############UTILITIES####################
 
 
